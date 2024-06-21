@@ -1,0 +1,30 @@
+import navesEspaciales.*
+
+describe "prepararViaje para las distitnas Naves" {
+
+	const naveB1 = new NavesBaliza(direccionRespectoAlSol = 10)
+	const naveP1 = new NavesPasajeros(cantPasajeros = 20, direccionRespectoAlSol = 10)
+	const naveC1 = new NavesCombate(direccionRespectoAlSol = 10)
+
+	test "prepararViaje para naveB1" {
+		naveB1.prepararViaje()
+		assert.equals("verde",naveB1.mostrarBaliza())
+		assert.equals(0, naveB1.direccionRespectoAlSol())
+	}
+
+	test "prepararViaje para naveP1" {
+		naveP1.prepararViaje()
+		assert.equals(80,naveP1.racionesComida())
+		assert.equals(120,naveP1.racionesBebida())
+		assert.equals(11, naveP1.direccionRespectoAlSol())
+	}
+
+	test "prepararViaje para naveC1" {
+		naveC1.prepararViaje()
+		assert.notThat(naveC1.estaInvisible())
+		assert.that(naveC1.misilesDesplegados())
+		assert.that(naveC1.emitioMensaje("Saliendo en misión"))
+	}
+
+}
+
